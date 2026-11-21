@@ -1,6 +1,9 @@
 # Development-set CSVs stay on disk and out of git.
 data/
 
+# Identity-matching baseline stays on disk and out of git.
+Identity_matching_results 2/
+
 # Local environments. .Hack_venv is the environment used in this checkout.
 .Hack_venv/
 .venv/
