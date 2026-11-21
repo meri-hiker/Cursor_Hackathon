@@ -1,3 +1,6 @@
+# Development-set CSVs stay on disk and out of git.
+data/
+
 # Local environments. .Hack_venv is the environment used in this checkout.
 .Hack_venv/
 .venv/
