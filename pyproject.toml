@@ -38,6 +38,7 @@ same_person = ["py.typed"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = ["-q"]
+markers = ["slow: loads the full development set"]
 
 [tool.ruff]
 line-length = 100
@@ -49,3 +50,7 @@ select = ["E", "F", "I", "UP", "B"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["same_person"]
+
+[tool.ruff.lint.per-file-ignores]
+# The dashboard is one HTML/JS template string.
+"src/same_person/screener/dashboard.py" = ["E501"]

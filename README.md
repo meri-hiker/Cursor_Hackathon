@@ -1,4 +1,4 @@
-# Same Person or Not?
+git checkout -b my-branch# Same Person or Not?
 
 Group workspace for the name-screening challenge. Each alert is a customer who might match one or more watchlist profiles. For every hit, decide whether it is the same person or company.
 
@@ -85,6 +85,16 @@ That overwrites `data/`. Pass `--out` to write somewhere else. The workbook's sh
 ## Decisions
 
 `Decision` is `SAME_ENTITY`, `DIFFERENT_ENTITY`, or `REVIEW`. `ReasonCode` lists the codes in the SOP, and each code belongs to one decision. `parse_reason_codes` splits the semicolon-separated cell used in the practice labels.
+
+### Data from anywhere
+
+`--input` runs the screener on data that did not come from this checkout:
+
+```powershell
+.Hack_venv\Scripts\python.exe -m same_person.screener --input "C:\path\to\upload"
+```
+
+The input can be a folder (searched recursively), an `.xlsx` workbook, a `.zip`, or single `.csv`, `.tsv`, `.json` or `.jsonl` files. Files and sheets are matched to tables by name in any style, so `Alerts.csv`, `alerts.jsonl` and `KYC checks` all work. `same_person/screener/ingest.py` normalises the input into `outputs/screener/input/data` and prints what it found and changed. It handles renamed headers (including the `score_matches.py` clean headings), delimiters, text encodings, lists in cells, hits nested inside JSON alerts, and missing optional tables or columns. Alerts and Hits are required. If no Policy is uploaded, the bundled SOP is used. To only check an upload, run `python -m same_person.screener.ingest PATH`.
 
 ## Development
 
